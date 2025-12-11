@@ -125,11 +125,12 @@ class HomePageNew extends GetView<HomeController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Hero Banner Carousel
+              _buildSearchBar(context, searchController),
+
               _buildBannerCarousel(context),
               
               // Search Bar
-              _buildSearchBar(context, searchController),
-              
+
               // Quick Actions
               _buildQuickActions(context, authController),
               
@@ -226,8 +227,8 @@ class HomePageNew extends GetView<HomeController> {
           Expanded(
             child: _buildActionCard(
               context,
-              icon: Icons.category,
-              label: 'Categories',
+              icon: Icons.store,
+              label: 'My Store',
               color: Colors.blue,
               onTap: () => controller.navigateToAllCategories(),
             ),
@@ -343,10 +344,10 @@ class HomePageNew extends GetView<HomeController> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: 3,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 1.3,
+                childAspectRatio: 1.0,
               ),
               itemCount: controller.popularCategories.length > 6
                   ? 6
@@ -596,7 +597,7 @@ class _BannerCarouselState extends State<_BannerCarousel> {
         itemBuilder: (context, index) {
           final banner = widget.banners[index];
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               gradient: LinearGradient(

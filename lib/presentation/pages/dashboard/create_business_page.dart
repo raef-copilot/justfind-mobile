@@ -310,11 +310,11 @@ class _CreateBusinessPageState extends State<CreateBusinessPage> {
         latitude: 24.7136, // TODO: Get from map picker
         longitude: 46.6753, // TODO: Get from map picker
         phone: phoneController.text.trim(),
-        email: emailController.text.trim(),
-        website: websiteController.text.trim().isEmpty ? null : websiteController.text.trim(),
-        imagePath: null, // TODO: Backend doesn't support image upload on create yet
+        // email: emailController.text.trim(),
+        website: websiteController.text.trim().isEmpty ? null : websiteController.text.trim()
       );
-      
+    // ,
+    // imagePath: null, // TODO: Backend doesn't support image upload on create yet
       result.fold(
         (failure) {
           SnackbarHelper.showError('Error', failure.message);

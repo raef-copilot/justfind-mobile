@@ -34,11 +34,13 @@ class CategoryCard extends StatelessWidget {
                   color: Theme.of(context).primaryColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  _getCategoryIcon(category.name),
-                  size: 32,
-                  color: Theme.of(context).primaryColor,
-                ),
+                child: Text(category.icon, style: TextStyle(fontSize: 20),)
+
+                // Icon(
+                //   _getCategoryIcon(category.name),
+                //   size: 32,
+                //   color: Theme.of(context).primaryColor,
+                // ),
               ),
               const SizedBox(height: 8),
               
@@ -52,15 +54,15 @@ class CategoryCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 4),
-              
-              // Business Count
-              Text(
-                '${category.businessCount}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.grey[600],
-                    ),
-              ),
+              // const SizedBox(height: 4),
+              //
+              // // Business Count
+              // Text(
+              //   '${category.businessCount}',
+              //   style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              //         color: Colors.grey[600],
+              //       ),
+              // ),
             ],
           ),
         ),
