@@ -1,0 +1,110 @@
+import 'package:justfind_app/data/models/category_model.dart';
+import 'package:justfind_app/domain/entities/business_entity.dart';
+
+class BusinessModel extends BusinessEntity {
+  BusinessModel({
+    required super.id,
+    required super.ownerId,
+    required super.categoryId,
+    required super.name,
+    required super.nameEn,
+    required super.nameAr,
+    required super.description,
+    required super.descriptionEn,
+    required super.descriptionAr,
+    required super.phone,
+    required super.whatsapp,
+    required super.address,
+    required super.addressEn,
+    required super.addressAr,
+    required super.lat,
+    required super.lng,
+    required super.status,
+    required super.images,
+    required super.rating,
+    required super.reviewCount,
+    required super.isFavorited,
+    super.email,
+    super.website,
+    super.city,
+    super.openingHours,
+    super.averageRating,
+    super.totalReviews,
+    super.category,
+    required super.createdAt,
+    required super.updatedAt,
+  });
+  
+  factory BusinessModel.fromJson(Map<String, dynamic> json) {
+    return BusinessModel(
+      id: json['id'] is int ? json['id'] : int.parse(json['id'].toString()),
+      ownerId: json['owner_id'] is int ? json['owner_id'] : int.parse(json['owner_id'].toString()),
+      categoryId: json['category_id'] is int ? json['category_id'] : int.parse(json['category_id'].toString()),
+      name: json['name'] as String? ?? json['name_en'] as String,
+      nameEn: json['name_en'] as String? ?? json['name'] as String? ?? '',
+      nameAr: json['name_ar'] as String? ?? '',
+      description: json['description'] as String? ?? json['description_en'] as String? ?? '',
+      descriptionEn: json['description_en'] as String? ?? json['description'] as String? ?? '',
+      descriptionAr: json['description_ar'] as String? ?? '',
+      phone: json['phone'].toString(),
+      whatsapp: json['whatsapp']?.toString() ?? json['phone'].toString(),
+      address: json['address'] as String? ?? json['address_en'] as String? ?? '',
+      addressEn: json['address_en'] as String? ?? json['address'] as String? ?? '',
+      addressAr: json['address_ar'] as String? ?? '',
+      lat: (json['lat'] is num ? json['lat'] : double.tryParse(json['lat']?.toString() ?? '0'))?.toDouble() ?? 0.0,
+      lng: (json['lng'] is num ? json['lng'] : double.tryParse(json['lng']?.toString() ?? '0'))?.toDouble() ?? 0.0,
+      status: json['status'] as String,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList() ?? [],
+      rating: (json['rating'] is num ? json['rating'] : double.tryParse(json['rating']?.toString() ?? '0'))?.toDouble() ?? 0.0,
+      reviewCount: json['review_count'] is int ? json['review_count'] : int.tryParse(json['review_count']?.toString() ?? '0') ?? 0,
+      isFavorited: json['is_favorited'] == true || json['is_favorited'] == 1,
+      email: json['email'] as String?,
+      website: json['website'] as String?,
+      city: json['city'] as String?,
+      openingHours: json['opening_hours'] as String?,
+      averageRating: json['average_rating'] != null ? (json['average_rating'] is num ? json['average_rating'] : double.tryParse(json['average_rating'].toString()))?.toDouble() : null,
+      totalReviews: json['total_reviews'] != null ? (json['total_reviews'] is int ? json['total_reviews'] : int.tryParse(json['total_reviews'].toString())) : null,
+      category: json['category'] != null 
+          ? CategoryModel.fromJson(json['category'] as Map<String, dynamic>)
+          : null,
+      createdAt: DateTime.parse((json['createdAt'] ?? json['created_at']) as String),
+      updatedAt: DateTime.parse((json['updatedAt'] ?? json['updated_at']) as String),
+    );
+  }
+  
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'owner_id': ownerId,
+      'category_id': categoryId,
+      'name': name,
+      'name_en': nameEn,
+      'name_ar': nameAr,
+      'description': description,
+      'description_en': descriptionEn,
+      'description_ar': descriptionAr,
+      'phone': phone,
+      'whatsapp': whatsapp,
+      'address': address,
+      'address_en': addressEn,
+      'address_ar': addressAr,
+      'lat': lat,
+      'lng': lng,
+      'status': status,
+      'images': images,
+      'rating': rating,
+      'review_count': reviewCount,
+      'is_favorited': isFavorited,
+      if (email != null) 'email': email,
+      if (website != null) 'website': website,
+      if (city != null) 'city': city,
+      if (openingHours != null) 'opening_hours': openingHours,
+      if (averageRating != null) 'average_rating': averageRating,
+      if (totalReviews != null) 'total_reviews': totalReviews,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
+    };
+  }
+}
